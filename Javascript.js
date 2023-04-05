@@ -25,8 +25,8 @@ function main() {
     scissorsDiv.addEventListener("click", function () {
         game("s");
     });
-}
 
+}
 main();
 
 
@@ -70,16 +70,19 @@ function win(userChoice, computerChoice) {
     userScore++;
     userScoreSpan.innerHTML = userScore;
     resultDiv.innerHTML = ` ${convertKeyWords(userChoice)} VS ${convertKeyWords(computerChoice)} 🔥 You win! `;
+    check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
 
 function lose(userChoice, computerChoice) {
     computerScore++;
     computerScoreSpan.innerHTML = computerScore;
     resultDiv.innerHTML = ` The choice of computer: ${convertKeyWords(computerChoice)} 🤣 You lose! `;
+    check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
 
 function draw(userChoice, computerChoice) {
     resultDiv.innerHTML = "Tie Score 🤗 ";
+    check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
 
 //convert
@@ -87,4 +90,35 @@ function convertKeyWords(letter) {
     if (letter === "r") return "Rock";
     if (letter === "p") return "Paper";
     return "Scissors"
+}
+
+// check who wins in total
+function checkWinTotal(player){
+    switch(player){
+        case "hooman": {
+            userScore = 0;
+            computerScore = 0;
+            userScoreSpan.innerHTML = userScore;
+            computerScoreSpan.innerHTML = computerScore;
+            alert("You win !!!");
+            break;
+        }
+        case "npc": {
+            userScore = 0;
+            computerScore = 0;
+            userScoreSpan.innerHTML = userScore;
+            computerScoreSpan.innerHTML = computerScore;
+            alert("Computer wins");
+            break;
+        }
+    }
+}
+
+function check(playerOne, playerTwo){
+    if(playerOne === "2"){
+        checkWinTotal("hooman");
+    }
+    else if(playerTwo === "2"){
+        checkWinTotal("npc");
+    }
 }
