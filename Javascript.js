@@ -68,9 +68,7 @@ function game(userChoice) {
 // then display the result back on to the DOM
 function win(userChoice, computerChoice) {
     userScore++;
-    console.log('slo', userScore)
-    userScoreSpan.innerHTML = `${userScore}`;
-    console.log('==', userChoice, computerChoice)
+    userScoreSpan.innerHTML = userScore;
     resultDiv.innerHTML = ` Your choice: ${convertKeyWords(userChoice)} The choice of computer: ${convertKeyWords(computerChoice)} 🔥 You win! `;
     check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
@@ -98,19 +96,21 @@ function convertKeyWords(letter) {
 function checkWinTotal(player){
     switch(player){
         case "hooman": {
+            alert("You win !!!");
             userScore = 0;
             computerScore = 0;
             userScoreSpan.innerHTML = userScore;
             computerScoreSpan.innerHTML = computerScore;
-            alert("You win !!!");
+            resultDiv.innerHTML = `Please choose something`;
             break;
         }
         case "npc": {
+            alert("Computer wins");
             userScore = 0;
             computerScore = 0;
             userScoreSpan.innerHTML = userScore;
             computerScoreSpan.innerHTML = computerScore;
-            alert("Computer wins");
+            resultDiv.innerHTML = `Please choose something`;
             break;
         }
     }
@@ -118,10 +118,13 @@ function checkWinTotal(player){
 
 function check(playerOne, playerTwo){
     if(playerOne === "2"){
-        userScoreSpan.innerHTML = userScore;
-        checkWinTotal("hooman");
+        setTimeout(() => {
+            checkWinTotal("hooman");
+        }, 10)
     }
     else if(playerTwo === "2"){
-        checkWinTotal("npc");
+        setTimeout(() => {
+            checkWinTotal("npc");
+        }, 10);
     }
 }
