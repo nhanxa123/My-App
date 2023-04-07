@@ -101,7 +101,7 @@ function checkWinTotal(player){
             computerScore = 0;
             userScoreSpan.innerHTML = userScore;
             computerScoreSpan.innerHTML = computerScore;
-            resultDiv.innerHTML = `Please choose something`;
+            resultDiv.innerHTML = `Choose something`;
             break;
         }
         case "npc": {
@@ -110,7 +110,7 @@ function checkWinTotal(player){
             computerScore = 0;
             userScoreSpan.innerHTML = userScore;
             computerScoreSpan.innerHTML = computerScore;
-            resultDiv.innerHTML = `Please choose something`;
+            resultDiv.innerHTML = `Choose something`;
             break;
         }
     }
