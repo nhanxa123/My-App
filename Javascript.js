@@ -25,8 +25,8 @@ function main() {
     scissorsDiv.addEventListener("click", function () {
         game("s");
     });
-}
 
+}
 main();
 
 
@@ -69,17 +69,20 @@ function game(userChoice) {
 function win(userChoice, computerChoice) {
     userScore++;
     userScoreSpan.innerHTML = userScore;
-    resultDiv.innerHTML = ` ${convertKeyWords(userChoice)} VS ${convertKeyWords(computerChoice)} 🔥 You win! `;
+    resultDiv.innerHTML = ` Your choice: ${convertKeyWords(userChoice)} The choice of computer: ${convertKeyWords(computerChoice)} 🔥 You win! `;
+    check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
 
 function lose(userChoice, computerChoice) {
     computerScore++;
     computerScoreSpan.innerHTML = computerScore;
-    resultDiv.innerHTML = ` The choice of computer: ${convertKeyWords(computerChoice)} 🤣 You lose! `;
+    resultDiv.innerHTML = ` Your choice: ${convertKeyWords(userChoice)} The choice of computer: ${convertKeyWords(computerChoice)} 🤣 You lose! `;
+    check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
 
 function draw(userChoice, computerChoice) {
-    resultDiv.innerHTML = "Tie Score 🤗 ";
+    resultDiv.innerHTML = ` Your choice: ${convertKeyWords(userChoice)} The choice of computer: ${convertKeyWords(computerChoice)} Tie Score 🤗 `;
+    check(userScoreSpan.textContent, computerScoreSpan.textContent);
 }
 
 //convert
@@ -87,4 +90,41 @@ function convertKeyWords(letter) {
     if (letter === "r") return "Rock";
     if (letter === "p") return "Paper";
     return "Scissors"
+}
+
+// check who wins in total
+function checkWinTotal(player){
+    switch(player){
+        case "hooman": {
+            alert("You win !!!");
+            userScore = 0;
+            computerScore = 0;
+            userScoreSpan.innerHTML = userScore;
+            computerScoreSpan.innerHTML = computerScore;
+            resultDiv.innerHTML = `Choose something`;
+            break;
+        }
+        case "npc": {
+            alert("Computer wins");
+            userScore = 0;
+            computerScore = 0;
+            userScoreSpan.innerHTML = userScore;
+            computerScoreSpan.innerHTML = computerScore;
+            resultDiv.innerHTML = `Choose something`;
+            break;
+        }
+    }
+}
+
+function check(playerOne, playerTwo){
+    if(playerOne === "2"){
+        setTimeout(() => {
+            checkWinTotal("hooman");
+        }, 10)
+    }
+    else if(playerTwo === "2"){
+        setTimeout(() => {
+            checkWinTotal("npc");
+        }, 10);
+    }
 }
